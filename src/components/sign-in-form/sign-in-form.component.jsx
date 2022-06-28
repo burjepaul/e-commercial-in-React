@@ -3,6 +3,7 @@ import { useState } from "react";
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 
+
 import {
   singInWithGoogePopup,
   createUserDocumentFromAuth,
@@ -20,6 +21,7 @@ const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
+
   const resetFormField = () => {
     setFormFields(defaultFormFields);
   };
@@ -34,8 +36,7 @@ const SignInForm = () => {
     event.preventDefault();
 
     try {
-      const response = await signInAuthWithEmailAndPassword(email, password);
-      console.log(response)
+      const {user} = await signInAuthWithEmailAndPassword(email, password);
       resetFormField();
     } catch (error) {
       switch(error.code){
